@@ -1,0 +1,170 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+  <title>PreRoute</title>
+
+  <!-- Mapbox GL JS js and css -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
+
+
+  <script src="js/js-toast-master/toast.js"></script>
+
+
+  <!-- mapbox geocoder -->
+  <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.css'
+    type='text/css' />
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  <!-- juqery required for bootstrap js -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+
+    <style>
+      #snackbar {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px;
+        font-size: 17px;
+      }
+      
+      #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+      
+      @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;} 
+        to {bottom: 30px; opacity: 1;}
+      }
+      
+      @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+      }
+      
+      @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;} 
+        to {bottom: 0; opacity: 0;}
+      }
+      
+      @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+      }
+      </style>
+
+
+
+</head>
+
+<body>
+    <!-- <pre id='info'>test</pre> -->
+  <!-- Container -->
+  <div class="container">
+    <div class="masthead">
+        <nav class="navbar navbar-default" style="margin-bottom: 0;">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header" style="font-size: 16px;">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <img style="margin: 10 10 10 0;height: 31px;-webkit-user-select: none;" src="https://az609578.vo.msecnd.net/public/c8c60f8/images/logo-55.png">
+                <!-- <a class="navbar-brand"> <img style="-webkit-user-select: none;margin: auto;" src="https://az609578.vo.msecnd.net/public/c8c60f8/images/logo-55.png"></a> -->
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">REAL TIME MAP <span class="sr-only">(current)</span></a></li>
+                  <li><a  href="#">BLOCKS</a></li>
+                  <li><a  href="#">ROUTES AND TRIPS</a></li>
+                  <li><a  href="#">MESSAGING</a></li>
+                  <li><a href="#">DISRUPTS</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="font-size: 16px;">
+                    <li><a href="#" style="color:grey !important;"><i class="fa fa-bell"></i></a></li>
+                    <li><a href="#" style="color:grey !important;"><i class="fa fa-user"></i></a></li>
+                    <li><a href="#" style="color:grey !important;"><i class="fa fa-cog"></i></a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+    </div>
+    <div class="masthead">
+      <div class="row">
+        <div class="col-md-2" style=" padding-right: 0; padding-left: 26px; padding-top: 10px;">
+            <div class="btn-group-vertical btn-group-lg   " style="width: 100%;"> 
+                <button type="button" onclick="AddMarker()" class="btn btn-primary">Bus 145</button>
+                <button type="button" onclick="updateGeoJson2()" class="btn btn-warning">Add disruption point</button>
+                <button type="button" onclick="addReroute(), myFunction()" class="btn btn-success">Calculate detour</button>
+              </div>
+
+        <div id="snackbar">Easy, we good!</div>
+        </div>
+
+        <div class="col-md-10">
+          <div id="map"></div>
+          <div id="geocoder-container"></div>
+        </div>
+      </div>
+    </div>
+
+
+  </div> <!-- /container -->
+
+  <!-- local code to load and style the map -->
+  <script src="js/main.js"></script>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4000);
+    }
+    </script>
+</body>
+
+</html>
